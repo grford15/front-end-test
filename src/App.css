@@ -1,10 +1,24 @@
 .App {
   display: grid;
+  grid-template-rows: auto;
   text-align: center;
   color: whitesmoke;
   font-family: 'Poppins', sans-serif;
+  padding: 1rem;
 }
 
 .App-header {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.App-header h2 {
   font-family: 'Caveat', cursive;
+  font-size: 4rem;
+  text-shadow: black 3px 3px 6px;
+}
+
+main {
+  display: grid;
+  justify-content: center;
 }
