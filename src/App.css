@@ -1,4 +1,4 @@
-.App {
+.app {
   display: grid;
   grid-template-rows: auto;
   text-align: center;
@@ -7,12 +7,12 @@
   padding: 1rem;
 }
 
-.App-header {
+.app-header {
   display: grid;
   grid-template-columns: auto;
 }
 
-.App-header h2 {
+.app-header h2 {
   font-family: 'Caveat', cursive;
   font-size: 4rem;
   text-shadow: black 3px 3px 6px;
@@ -21,4 +21,11 @@
 main {
   display: grid;
   justify-content: center;
+}
+
+.search-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  margin-bottom: 1rem;
 }
