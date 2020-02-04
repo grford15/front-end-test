@@ -11,6 +11,8 @@ Build a simple but well-structured single page application using a JavaScript co
 
 - The first choice I made was to use the movies API that I found (Provided by https://www.themoviedb.org/). I wanted to use something different from the two listed in the PDF & thought this would interest me the most out of all the API's I looked through.
 
+- The site is originally populated with the Top Rated movies according to the API. Then the user can search for a movie by typing a movie title into the search bar & clicking the search button. The search term entered has to be at least 2 characters (stipulated by the API) so if the user only enters 1 then clicks search, it just returns the top-rated movies again. 
+
 - My layout is pretty simple purely because I feel like that's all I wanted to return from the API for this project due to time constraints. If I was to work on this further I believe I could make it a lot more interactive & in-depth due to how good the API is, i.e I could include a link in each movie to direct the user to similar movies or recommended movies. I would also probably extend the site to include TV shows which are available in the API. Also, the images in each movie are just stock images but would be good to replace with movie posters.
 
 - If I was to start this again I would change it visually, I started off with the heading image with the text which worked at the start but took me down the road of making the site quite dark. Personally I prefer sites to look light, quite minimalist so would make sure I took that route the next time.
