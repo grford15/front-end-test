@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBox from './components/SearchBox';
 import './App.css';
 import Axios from 'axios';
+import image from './images/stock-img.jpeg';
 
 const API_KEY = 'ae72f671f1c83585a618619cf3832caf';
 const SEARCH_MOVIES = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=`;
@@ -76,13 +77,22 @@ class App extends Component {
           <div className="results-section">
             {loaded ? (
               results.map(result => (
-                <div key={result.id}>
-                  <h1>{result.title}</h1>
-                  <h2 className="result-score">
-                    Rating: {result.vote_average}
-                  </h2>
-                  <p>Release Date: {result.release_date}</p>
-                  <p className="result-overview">{result.overview}</p>
+                <div key={result.id} className="result-card">
+                  <div className="result-description">
+                    <h1>{result.title}</h1>
+                    <p className="result-overview">
+                      {result.overview}
+                    </p>
+                  </div>
+                  <div>
+                    <img src={image} alt="film reel" />
+                    <h2 className="result-score">
+                      Rating: {result.vote_average}
+                    </h2>
+                    <p>Popularity Score: {result.popularity}</p>
+                    <p>Vote Count: {result.vote_count}</p>
+                    <p>Release Date: {result.release_date}</p>
+                  </div>
                 </div>
               ))
             ) : (
