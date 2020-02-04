@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import SearchBox from './components/SearchBox';
 import './App.css';
-import Button from './components/Button';
 import Axios from 'axios';
 
 const API_KEY = 'ae72f671f1c83585a618619cf3832caf';
-const BASE_URL = 'https://api.themoviedb.org/3/search/movie?api_key=';
+const SEARCH_MOVIES = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=`;
+const TOP_MOVIES = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
 class App extends Component {
   constructor(props) {
@@ -14,20 +14,47 @@ class App extends Component {
     this.state = {
       results: [],
       loaded: false,
-      searchTerm: 'godfather',
+      searchTerm: '',
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
+    this.fetchResults();
+  }
+
+  fetchResults() {
     const { searchTerm } = this.state;
-    Axios(
-      `${BASE_URL}${API_KEY}&language=en-US&query=${searchTerm}&page=1&include_adult=true`,
-    ).then(result =>
-      this.setState({
-        results: result.data.results,
-        loaded: true,
-      }),
-    );
+    if (searchTerm.length > 1) {
+      Axios(
+        `${SEARCH_MOVIES}${searchTerm}&page=1&include_adult=true`,
+      ).then(result =>
+        this.setState({
+          results: result.data.results,
+          loaded: true,
+        }),
+      );
+    } else {
+      Axios(`${TOP_MOVIES}`).then(result =>
+        this.setState({
+          results: result.data.results,
+          loaded: true,
+        }),
+      );
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.fetchResults();
+  }
+
+  onChange(e) {
+    this.setState({
+      searchTerm: e.target.value,
+    });
   }
 
   render() {
@@ -35,18 +62,27 @@ class App extends Component {
     return (
       <div className="app">
         <header className="app-header">
-          <h2>The Big Movie Database</h2>
+          <h2 className="tracking-in-expand">
+            The Big Movie Database
+          </h2>
         </header>
         <main>
           <div className="search-section">
-            <SearchBox />
-            <Button />
+            <SearchBox
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
           </div>
           <div className="results-section">
             {loaded ? (
               results.map(result => (
                 <div key={result.id}>
                   <h1>{result.title}</h1>
+                  <h2 className="result-score">
+                    Rating: {result.vote_average}
+                  </h2>
+                  <p>Release Date: {result.release_date}</p>
+                  <p className="result-overview">{result.overview}</p>
                 </div>
               ))
             ) : (

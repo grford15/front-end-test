@@ -1,3 +1,7 @@
 input {
   border-radius: 1rem;
+  padding: 0.5rem;
+  text-indent: 5px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
